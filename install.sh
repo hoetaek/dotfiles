@@ -16,7 +16,7 @@ echo -e "${BLUE}🚀 Starting dotfiles setup...${NC}"
 if [ -d "$DOTFILES_DIR" ]; then
     echo -e "${BLUE}📦 Updating existing dotfiles...${NC}"
     cd "$DOTFILES_DIR"
-    git pull origin main
+    git pull origin master
 else
     echo -e "${BLUE}📦 Cloning dotfiles repository...${NC}"
     git clone https://github.com/hoetaek/dotfiles.git "$DOTFILES_DIR"

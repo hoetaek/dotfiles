@@ -6,7 +6,7 @@ macOS 개발 환경 자동화를 위한 dotfiles 저장소
 
 ```bash
 # 원라이너 설치
-curl -fsSL https://raw.githubusercontent.com/hoetaek/dotfiles/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/hoetaek/dotfiles/master/install.sh | bash
 ```
 
 ## 📦 포함된 내용
