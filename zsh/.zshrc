@@ -10,7 +10,25 @@ else
     eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-# 모듈들 순차 로드
+# ============================================
+# Oh My Zsh 설정
+# ============================================
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load
+ZSH_THEME="agnoster"
+
+# Set list of plugins to load
+plugins=(git zsh-autosuggestions web-search sudo copybuffer
+         dirhistory history poetry)
+
+# Load Oh My Zsh
+source $ZSH/oh-my-zsh.sh
+
+# ============================================
+# Dotfiles 모듈들 로드
+# ============================================
 if [[ -f "$DOTFILES/zsh/exports.zsh" ]]; then
     source "$DOTFILES/zsh/exports.zsh"
 fi
@@ -31,18 +49,24 @@ if [[ -f "$DOTFILES/zsh/github.zsh" ]]; then
     source "$DOTFILES/zsh/github.zsh"
 fi
 
-# Homebrew zsh plugins 로드
-if [[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-if [[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
 # fzf 설정
 if command -v fzf &> /dev/null; then
     eval "$(fzf --zsh)"
+fi
+
+# fzf 사용자 정의 키바인딩
+export FZF_DEFAULT_OPTS="
+  --bind 'j:down,k:up,ctrl-j:preview-down,ctrl-k:preview-up'
+  --bind 'ctrl-d:half-page-down,ctrl-u:half-page-up'
+  --bind 'g:first,G:last'
+  --bind 'ctrl-f:page-down,ctrl-b:page-up'
+"
+
+# autojump 설정
+if [[ $(uname -m) == 'arm64' ]]; then
+    [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+else
+    [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
 
 # 로컬 설정 (Git에 올리지 않는 머신별 설정)
@@ -50,27 +74,11 @@ if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
 
-# 히스토리 설정
+# ============================================
+# 추가 히스토리 설정 (Oh My Zsh 기본 설정 보완)
+# ============================================
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.zsh_history
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
-
-# 디렉토리 이동 개선
-setopt AUTO_CD
-setopt AUTO_PUSHD
-setopt PUSHD_IGNORE_DUPS
-
-# 프롬프트 설정 (간단한 버전)
-autoload -U colors && colors
-setopt PROMPT_SUBST
-
-# Git 브랜치 표시 함수
-git_branch() {
-    git branch 2>/dev/null | grep '^*' | sed 's/* //'
-}
-
-# 프롬프트
-PS1='%{$fg[cyan]%}%c%{$reset_color%} %{$fg[yellow]%}$(git_branch)%{$reset_color%} $ '

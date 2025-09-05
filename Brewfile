@@ -37,6 +37,7 @@ brew "fzf"          # 퍼지 파인더
 brew "fd"           # find 개선 버전
 brew "tldr"         # man 페이지 요약
 brew "gh"           # GitHub CLI
+brew "autojump"     # 디렉토리 점프 도구
 
 # GUI 앱들
 cask "claude-code"       # Claude Code - Anthropic의 AI 코딩 도구

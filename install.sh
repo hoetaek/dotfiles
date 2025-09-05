@@ -40,6 +40,14 @@ else
     echo -e "${GREEN}✅ Homebrew already installed${NC}"
 fi
 
+# Oh My Zsh 설치 확인
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo -e "${BLUE}🎨 Installing Oh My Zsh...${NC}"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+else
+    echo -e "${GREEN}✅ Oh My Zsh already installed${NC}"
+fi
+
 # Brewfile에서 패키지 설치
 if [ -f "$DOTFILES_DIR/Brewfile" ]; then
     echo -e "${BLUE}📦 Installing packages from Brewfile...${NC}"

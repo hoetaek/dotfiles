@@ -34,13 +34,15 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 # GENERAL ENVIRONMENT VARIABLES
 # ============================================================
 
+# 사용자 설정
+DEFAULT_USER="$(whoami)"
+
 # 에디터 설정
 export EDITOR="vim"
 export VISUAL="$EDITOR"
 
 # 언어 설정
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
+export LC_TIME=C
 
 # 히스토리 설정
 export HISTCONTROL=ignoredups:erasedups

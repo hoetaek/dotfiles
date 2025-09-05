@@ -101,7 +101,15 @@ alias pip='pip3'
 # ============================================================
 # DEVELOPMENT WORKFLOW ALIASES
 # ============================================================
-# (AI 커밋 메시지 도구는 필요시 여기에 추가)
+
+# Python linting
+alias pylint='isort . && black .'
+
+# Celery worker (accepts optional directory name, defaults to current directory name)
+c() {
+    local app_name="${1:-$(basename "$PWD")}"
+    OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES celery -A "${app_name}" worker -l info
+}
 
 # ============================================================
 # SYSTEM UTILITIES
