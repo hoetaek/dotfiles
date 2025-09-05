@@ -12,6 +12,10 @@ brew "zsh-syntax-highlighting"
 brew "curl"
 brew "wget"
 
+# 개인 도구
+tap "hoetaek/tap"
+brew "hoetaek/tap/doist"     # Personal Todoist CLI 도구
+
 # PHP 개발 스택
 brew "php@8.2"
 brew "composer"
