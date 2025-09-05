@@ -44,5 +44,13 @@ cd ~/dotfiles && git pull && brew bundle
 │   └── laravel.zsh
 ├── git/                # Git 설정
 │   └── .gitconfig
+├── claude/             # Claude Code 설정
+├── iterm2/             # iTerm2 환경설정
+├── phpstorm/           # PhpStorm IDE 설정
+├── docs/               # 문서 및 가이드
 └── README.md
 ```
+
+## 📚 문서
+
+자세한 설정 가이드는 [`docs/`](docs/) 디렉토리를 참고하세요.
