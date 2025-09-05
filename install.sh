@@ -97,6 +97,27 @@ if [ -f "$DOTFILES_DIR/claude/plugins/config.json" ]; then
     ln -sf "$DOTFILES_DIR/claude/plugins/config.json" ~/.claude/plugins/config.json
 fi
 
+# iTerm2 설정
+if [ -f "$DOTFILES_DIR/iterm2/com.googlecode.iterm2.plist" ]; then
+    echo -e "${BLUE}📱 Setting up iTerm2 configuration...${NC}"
+    
+    # iTerm2가 실행 중이면 종료하라고 안내
+    if pgrep -x "iTerm2" > /dev/null; then
+        echo -e "${BLUE}⚠️  Please quit iTerm2 before applying settings${NC}"
+        echo -e "${BLUE}Press any key when iTerm2 is closed...${NC}"
+        read -n 1
+    fi
+    
+    # 기존 설정 백업
+    if [ -f ~/Library/Preferences/com.googlecode.iterm2.plist ]; then
+        cp ~/Library/Preferences/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist.backup.$(date +%Y%m%d_%H%M%S)
+    fi
+    
+    # 새 설정 복사
+    cp "$DOTFILES_DIR/iterm2/com.googlecode.iterm2.plist" ~/Library/Preferences/com.googlecode.iterm2.plist
+    echo -e "${GREEN}✅ iTerm2 configuration installed${NC}"
+fi
+
 # 로컬 설정 파일 생성 (머신별로 다른 설정)
 if [ ! -f ~/.zshrc.local ]; then
     cat > ~/.zshrc.local << 'EOF'
