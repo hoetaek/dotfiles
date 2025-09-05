@@ -77,6 +77,26 @@ if [ -f "$DOTFILES_DIR/git/.gitconfig" ]; then
     ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
 fi
 
+# Claude 설정
+echo -e "${BLUE}🤖 Setting up Claude configuration...${NC}"
+mkdir -p ~/.claude/plugins
+
+backup_file ~/.claude/settings.json
+if [ -f "$DOTFILES_DIR/claude/settings.json" ]; then
+    ln -sf "$DOTFILES_DIR/claude/settings.json" ~/.claude/settings.json
+fi
+
+backup_file ~/.claude/statusline.sh
+if [ -f "$DOTFILES_DIR/claude/statusline.sh" ]; then
+    ln -sf "$DOTFILES_DIR/claude/statusline.sh" ~/.claude/statusline.sh
+    chmod +x ~/.claude/statusline.sh
+fi
+
+backup_file ~/.claude/plugins/config.json
+if [ -f "$DOTFILES_DIR/claude/plugins/config.json" ]; then
+    ln -sf "$DOTFILES_DIR/claude/plugins/config.json" ~/.claude/plugins/config.json
+fi
+
 # 로컬 설정 파일 생성 (머신별로 다른 설정)
 if [ ! -f ~/.zshrc.local ]; then
     cat > ~/.zshrc.local << 'EOF'
