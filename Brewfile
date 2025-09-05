@@ -14,6 +14,9 @@ tap "hoetaek/tap"
 brew "hoetaek/tap/doist"     # Personal Todoist CLI 도구
 
 # PHP 개발 스택
+# NOTE: When upgrading PHP version, also update:
+# - zsh/exports.zsh (PHP PATH exports)
+# - PhpStorm configuration will auto-detect, but may need re-export
 brew "php@8.2"
 brew "composer"
 brew "php-cs-fixer"

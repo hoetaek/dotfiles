@@ -118,6 +118,40 @@ if [ -f "$DOTFILES_DIR/iterm2/com.googlecode.iterm2.plist" ]; then
     echo -e "${GREEN}✅ iTerm2 configuration installed${NC}"
 fi
 
+# PhpStorm 설정
+PHPSTORM_CONFIG_DIR="$HOME/Library/Application Support/JetBrains"
+PHPSTORM_VERSION=$(ls "$PHPSTORM_CONFIG_DIR" 2>/dev/null | grep "PhpStorm" | tail -1)
+
+if [ -d "$DOTFILES_DIR/phpstorm" ] && [ -n "$PHPSTORM_VERSION" ]; then
+    echo -e "${BLUE}🐘 Setting up PhpStorm configuration...${NC}"
+    
+    PHPSTORM_PATH="$PHPSTORM_CONFIG_DIR/$PHPSTORM_VERSION"
+    
+    # 기존 설정 백업
+    if [ -d "$PHPSTORM_PATH" ]; then
+        echo -e "${BLUE}💾 Backing up existing PhpStorm settings${NC}"
+        cp -r "$PHPSTORM_PATH/options" "$PHPSTORM_PATH/options.backup.$(date +%Y%m%d_%H%M%S)" 2>/dev/null || true
+        cp -r "$PHPSTORM_PATH/codestyles" "$PHPSTORM_PATH/codestyles.backup.$(date +%Y%m%d_%H%M%S)" 2>/dev/null || true
+    fi
+    
+    # 설정 디렉토리 생성
+    mkdir -p "$PHPSTORM_PATH/options"
+    mkdir -p "$PHPSTORM_PATH/codestyles"
+    
+    # 설정 파일 복사
+    if [ -d "$DOTFILES_DIR/phpstorm/options" ]; then
+        cp "$DOTFILES_DIR/phpstorm/options/"* "$PHPSTORM_PATH/options/" 2>/dev/null || true
+    fi
+    
+    if [ -d "$DOTFILES_DIR/phpstorm/codestyles" ]; then
+        cp "$DOTFILES_DIR/phpstorm/codestyles/"* "$PHPSTORM_PATH/codestyles/" 2>/dev/null || true
+    fi
+    
+    echo -e "${GREEN}✅ PhpStorm configuration installed for $PHPSTORM_VERSION${NC}"
+elif [ -d "$DOTFILES_DIR/phpstorm" ]; then
+    echo -e "${BLUE}⚠️  PhpStorm configuration found in dotfiles but PhpStorm not installed${NC}"
+fi
+
 # 로컬 설정 파일 생성 (머신별로 다른 설정)
 if [ ! -f ~/.zshrc.local ]; then
     cat > ~/.zshrc.local << 'EOF'

@@ -3,6 +3,8 @@
 # ============================================================
 
 ### PHP Configuration (Laravel Herd 포함)
+# NOTE: When upgrading PHP version, update these paths:
+# Current version: 8.2
 export PATH="/opt/homebrew/opt/php@8.2/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"
 export PATH="/Users/hoetaekpro/.composer/vendor/bin:$PATH"
