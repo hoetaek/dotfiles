@@ -152,6 +152,22 @@ elif [ -d "$DOTFILES_DIR/phpstorm" ]; then
     echo -e "${BLUE}⚠️  PhpStorm configuration found in dotfiles but PhpStorm not installed${NC}"
 fi
 
+# Launchpad 설정 (선택적)
+if [ -f "$DOTFILES_DIR/launchpad/launchpad_backup.sql" ]; then
+    echo -e "${BLUE}📱 Launchpad configuration found${NC}"
+    echo -e "${BLUE}Do you want to restore Launchpad folder organization? (y/N)${NC}"
+    read -r LAUNCHPAD_RESPONSE
+    
+    if [[ "$LAUNCHPAD_RESPONSE" =~ ^[Yy]$ ]]; then
+        echo -e "${BLUE}📱 Restoring Launchpad configuration...${NC}"
+        cd "$DOTFILES_DIR/launchpad"
+        ./import_launchpad.sh
+        cd "$DOTFILES_DIR"
+    else
+        echo -e "${BLUE}⏭️  Skipping Launchpad configuration${NC}"
+    fi
+fi
+
 # 로컬 설정 파일 생성 (머신별로 다른 설정)
 if [ ! -f ~/.zshrc.local ]; then
     cat > ~/.zshrc.local << 'EOF'

@@ -1,0 +1,7 @@
+Folder: dev (ID: 92)
+Folder: 기타 (ID: 87)
+Folder: 생산성 (ID: 90)
+Folder: 오피스 (ID: 128)
+Folder: 유틸리티 (ID: 82)
+Folder: 커뮤니케이션 (ID: 130)
+Folder: 편집 (ID: 105)
