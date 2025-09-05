@@ -5,11 +5,8 @@ tap "homebrew/services"
 tap "shivammathur/php"
 
 # 개발 필수 도구
-brew "git"
-brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-brew "curl"
 brew "wget"
 
 # 개인 도구
@@ -24,7 +21,6 @@ brew "php-cs-fixer"
 # 데이터베이스
 brew "mysql"
 brew "redis"
-brew "sqlite"
 
 # Node.js (Vue.js, frontend 개발용)
 brew "node"
