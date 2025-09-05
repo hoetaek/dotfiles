@@ -1,7 +1,5 @@
 # Brewfile - PHP/Laravel 개발환경용 패키지 목록
 
-tap "homebrew/cask"
-tap "homebrew/services"
 tap "shivammathur/php"
 
 # 개발 필수 도구
