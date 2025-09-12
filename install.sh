@@ -97,6 +97,11 @@ if [ -f "$DOTFILES_DIR/claude/plugins/config.json" ]; then
     ln -sf "$DOTFILES_DIR/claude/plugins/config.json" ~/.claude/plugins/config.json
 fi
 
+backup_file ~/.claude/CLAUDE.md
+if [ -f "$DOTFILES_DIR/claude/CLAUDE.md" ]; then
+    ln -sf "$DOTFILES_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+fi
+
 # iTerm2 설정
 if [ -f "$DOTFILES_DIR/iterm2/com.googlecode.iterm2.plist" ]; then
     echo -e "${BLUE}📱 Setting up iTerm2 configuration...${NC}"
